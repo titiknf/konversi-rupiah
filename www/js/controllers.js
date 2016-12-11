@@ -16,7 +16,7 @@ function ($scope, $stateParams) {
 
 }])
    
-.controller('lihatDataCtrl', function($scope,$http,$ionicLoading,$stateParams,$ionicPopup,$state){
+.controller('lihatDataCtrl', function($scope,$http,$ionicLoading,$ionicPopup,$state){
 	$scope.showPopup = function($judul,$subjudul,$user){
 		var mypopup = $ionicPopup.show({
 			title 	    : $judul,
@@ -97,8 +97,8 @@ function ($scope, $stateParams) {
 
 }])
  
-.controller('prosesKonversiCtrl',['$scope','$http', function ($scope,$http,$ionicLoading,$stateParams){
-	$http.get("getDataByUang.php")
+.controller('prosesKonversiCtrl', function ($scope,$http,$ionicLoading,$stateParams){
+	$http.get("http://localhost/konversiMU/getDataByUang.php")
 	.success(function(dataU){
 		$scope.dataU = dataU;
 	})
@@ -125,5 +125,5 @@ function ($scope, $stateParams) {
 	})
 
 
-}]);
+});
  
