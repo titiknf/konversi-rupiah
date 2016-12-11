@@ -98,19 +98,11 @@ function ($scope, $stateParams) {
 }])
  
 .controller('prosesKonversiCtrl', function ($scope,$http,$ionicLoading,$stateParams){
-	$http.get("http://localhost/konversiMU/getDataByUang.php")
-	.success(function(dataU){
-		$scope.dataU = dataU;
-	})
-	.error(function(){
-		$scope.data = "error in fetching data";
-	})
-
 	var id = $stateParams.detail_id;
 
 	$scope.data = {
 		id: '',
-		NamaUang: '',
+		MataUang: '',
 		nilai: ''
 	}
 
@@ -118,8 +110,8 @@ function ($scope, $stateParams) {
 	$http.get('http://localhost/konversiMU/getDataByUang.php?id=' + id)
 	.then(function(result){
 		$scope.data.id 			= result.data[0].id;
-		$scope.data.NamaUang 	= result.data[0].NamaUang;
-		$scope.data.nilai			= result.data[0].nilai;
+		$scope.data.MataUang 	= result.data[0].MataUang;
+		$scope.data.nilai		= result.data[0].nilai;
 
 		$ionicLoading.hide();
 	})
