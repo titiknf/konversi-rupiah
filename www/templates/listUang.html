@@ -1,0 +1,14 @@
+<ion-view title="List Uang" id="page6">
+  <ion-content padding="true" class="has-header">
+    <ion-list id="listUang-list3" ng-repeat="dA in datail_id" >
+      <ion-item class="item-avatar item-icon-right  kelasListUang" 
+      id="listUang-list-item11" ui-sref="kontrolTab.prosesKonversi" 
+      href="#/detail_id/{dA.id}}">
+         <h2>{{dA.MataUang}}</h2>
+        <p>Nilai :  {{dA.nilai}}</p>
+        <i class="icon ion-ios-arrow-thin-right"></i>
+        <ion-option-button class="button-balanced">geser</ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
