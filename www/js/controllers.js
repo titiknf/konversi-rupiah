@@ -16,7 +16,7 @@ function ($scope, $stateParams) {
 
 }])
    
-.controller('lihatDataCtrl', function($scope,$http,$ionicLoading,$ionicPopup,$state){
+.controller('lihatDataCtrl', function($scope,$http,$ionicLoading,$stateParams,$ionicPopup,$state){
 	$scope.showPopup = function($judul,$subjudul,$user){
 		var mypopup = $ionicPopup.show({
 			title 	    : $judul,
@@ -27,7 +27,7 @@ function ($scope, $stateParams) {
 					onTap	: function(e){
 						$http.get('http://localhost/konversiMU/delete.php?id='+$user).then(function(result){
 							if(result.data=="1"){
-								$state.go('view');
+								$state.go('lihatData');
 							}
 						})
 					}
@@ -43,14 +43,14 @@ function ($scope, $stateParams) {
 		})
 	}
 
-	$scope.Hapus = function(User){
-		$scope.showPopup("Confirmaation","Yakin mau ngehapus " + NamaUang + " ? " , NamaUang)
+	$scope.Hapus = function(data){
+		$scope.showPopup("Confirmaation","Yakin mau ngehapus " + data + " ? " , data)
 	}
 
 	$ionicLoading.show();
 	$http.get('http://localhost/konversiMU/getDataListUang.php')
 	.then(function(result){
-		$scope.dataListUang1 = result.data;
+		$scope.dataListUang = result.data;
 		$ionicLoading.hide();
 	})
 
@@ -58,7 +58,7 @@ function ($scope, $stateParams) {
 	$ionicLoading.show();
 	$http.get('http://localhost/konversiMU/getDataListUang.php')
 	.then(function(result){
-		$scope.dataListUang1 = result.data;
+		$scope.dataListUang = result.data;
 		$ionicLoading.hide();
 	})
 	}
@@ -103,7 +103,10 @@ function ($scope, $stateParams) {
 	$scope.data = {
 		id: '',
 		MataUang: '',
-		nilai: ''
+		nilai: '',
+		bTombol: '',
+		hasil: '',
+		nominalRp: ''
 	}
 
 	$ionicLoading.show();
@@ -114,7 +117,16 @@ function ($scope, $stateParams) {
 		$scope.data.nilai		= result.data[0].nilai;
 
 		$ionicLoading.hide();
-	})
+
+		$scope.hasil = 0;
+		$scope.nominalRp = 0;
+		$scope.nominalnonRp = result.data[0].nilai;
+		$scope.onClickKonversi = function(){
+		}
+			$scope.hasil = $scope.nominalRp * $scope.nominalnonRp;
+		})
+
+
 
 
 });
