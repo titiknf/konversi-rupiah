@@ -35,14 +35,14 @@ function ($scope, $stateParams) {
 
 						}
 					}
-					// ,{
-					// 	text  : '<b>Kembali</b>',
-					// 	type  : 'button-assertive',
-					// 	onTap : function(e){
-					// 		$state.go('menu');
-					// 	}
+					,{
+						text  : '<b>Kembali</b>',
+						type  : 'button-assertive',
+						onTap : function(e){
+							$state.go('kontrolTab.tambahData');
+						}
 
-					// }
+					}
 				]
 			}
 		);
