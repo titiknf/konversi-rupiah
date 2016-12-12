@@ -1,19 +1,16 @@
-<ion-view title="Tambah Data" id="page3" style="background-color:#F6EDEF;">
+<ion-view title="TambahData" id="page3" style="background-color:#F6EDEF;">
   <ion-content padding="true" class="has-header">
-    <form id="tambahData-form11" class="list">
-      <label class="item item-input" id="tambahData-input7">
-        <span class="input-label">Nama Mata Uang</span>
-        <input type="number" placeholder="">
+    <form name="frmadd" novalidate ng-submit="frmadd.$valid && tambahData(userMatkul);">
+    <div class="list">
+      <label class="item item-input">
+        <input type="text" placeholder="ID" ng-model="userMatkul.id"  required minlength="2" maxlength="7" >
       </label>
-      <label class="item item-input" id="tambahData-input8">
-        <span class="input-label">Nominal</span>
-        <input type="text" placeholder="">
+      <label class="item item-input">
+        <input type="text" placeholder="Uang" ng-model="userMatkul.NamaUang"  required minlength="2" maxlength="7" >
       </label>
-      <label class="item item-input" id="tambahData-input11">
-        <span class="input-label">gambar</span>
-        <input type="text" placeholder="">
+      <label class="item item-input">
+        <input type="text" placeholder="Nilai" ng-model="userMatkul.nilai" name="nilai" required minlength="2">
       </label>
+      <input type="submit" value="Proses" class="button button-block button-positive" ng-disabled="!frmadd.$valid">
     </form>
-    <button id="tambahData-button10" class="button button-assertive  button-block">Tambahkan</button>
-  </ion-content>
 </ion-view>

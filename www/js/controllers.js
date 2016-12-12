@@ -8,13 +8,78 @@ function ($scope, $stateParams) {
 
 }])
    
-.controller('tambahDataCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
+.controller('tambahDataCtrl', function ($scope,$http,$ionicLoading,$ionicPopup,$state) {
+ $scope.userMatkul = {
+			id :'',
+			MataUang : '',
+			nilai : ''
+	}
 
 
-}])
+	$scope.showPopup = function(judul,subjudul){
+		var popup = $ionicPopup.show(
+			{
+				title 		: judul,
+				subTittle 	: subjudul,
+				scope 		: $scope,
+				buttons		: [
+					{
+						text  : 'Oke',
+						type  : 'button-calm',
+						onTap : function(e){
+							$scope.userMatkul = {
+								id :'',
+								MataUang : '',
+								nilai : ''
+							}
+
+						}
+					}
+					// ,{
+					// 	text  : '<b>Kembali</b>',
+					// 	type  : 'button-assertive',
+					// 	onTap : function(e){
+					// 		$state.go('menu');
+					// 	}
+
+					// }
+				]
+			}
+		);
+	}
+	
+	$scope.tambahData = function(userMatkul){
+		var baseUrl = "http://localhost/konversiMU/";
+		
+		$ionicLoading.show();
+		
+		$http.post(baseUrl + "insertDuwek.php",{
+			MataUang	: userMatkul.MataUang,
+			nilai		: userMatkul.nilai,
+			id			: userMatkul.id
+		})
+		.then(function(result){
+			$scope.status = result.data;
+			alert(result.data);
+			console.log(result.data);
+			if(result.data=="2"){
+				$scope.showPopup("Primary Key","not Allowed");
+			}
+			else if(result.data=="1"){
+				$scope.showPopup("Sukses","proses insert sukses");
+			}
+			else{
+				$scope.showPopup("Error Mo","check konfigurasi anda")
+			}
+
+
+			$ionicLoading.hide();
+		})
+		
+		
+	}
+
+})
    
 .controller('lihatDataCtrl', function($scope,$http,$ionicLoading,$stateParams,$ionicPopup,$state){
 	$scope.showPopup = function($judul,$subjudul,$user){
