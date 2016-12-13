@@ -1,0 +1,24 @@
+<ion-view>
+	<ion-header-bar>
+		<h1 class="title">Detail Mahasiswa</h1>
+	</ion-header-bar>
+
+	<ion-content>
+
+	<div class="list">
+		<label class="item">{{data.id}}</label>
+		<label class="item">{{data.NamaUang}}</label>
+		<label class="item">{{data.nilai}}</label>
+		<button class="button button-small button-balanced">
+		  kembali
+		</button>
+		<button class="button button-small button-outline button-assertive" ng-click="Hapus(data.nim)">
+		  hapus
+		</button>
+		
+		<button class="button button-small button-outline button-royal">
+		  edit
+		</button>
+	</div>
+	</ion-content>
+</ion-view>

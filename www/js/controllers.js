@@ -60,7 +60,6 @@ function ($scope, $stateParams) {
 		})
 		.then(function(result){
 			$scope.status = result.data;
-			alert(result.data);
 			console.log(result.data);
 			if(result.data=="2"){
 				$scope.showPopup("Primary Key","not Allowed");
@@ -129,13 +128,8 @@ function ($scope, $stateParams) {
 	}
 })
       
-.controller('welcomeCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
-
-
-}])
+.controller('welcomeCtrl', function ($scope, $stateParams) {
+})
    
 .controller('listUangCtrl',function ($scope, $http, $ionicLoading) {
 	$ionicLoading.show();
@@ -146,21 +140,93 @@ function ($scope, $stateParams) {
 	})
 })
    
-.controller('loginCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
-
-
-}])
+.controller('loginCtrl', function ($scope, $http, $ionicLoading, $state) {
+	$scope.login = function(User){
+		var user = User.nama;
+		var pass = User.password;
+		$http.get('http://localhost/konversiMU/getlogin.php?user='+user+'&pass='+pass)
+		.then(function(result){
+			if (result.data == "1") {
+				alert('Sukses Login');
+				$state.go('kontrolTab.konversiKeRupiah');
+			}
+			else{
+				alert('Username dan Password salah');
+			}
+		})
+	}
+})
    
-.controller('signupCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
-// You can include any angular dependencies as parameters for this function
-// TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $stateParams) {
+.controller('signupCtrl', function ($scope,$http,$ionicLoading,$ionicPopup,$state) {
+ $scope.akun = {
+			nama 	 : '',
+			password : '',
+			id 		 : '',
+			type 	 : ''
+	}
 
 
-}])
+	$scope.showPopup = function(judul,subjudul){
+		var popup = $ionicPopup.show(
+			{
+				title 		: judul,
+				subTittle 	: subjudul,
+				scope 		: $scope,
+				buttons		: [
+					{
+						text  : 'Oke',
+						type  : 'button-calm',
+						onTap : function(e){
+							// $state.go('login');
+						}
+
+					}
+					
+					,{
+						text  : '<b>Kembali</b>',
+						type  : 'button-assertive',
+						onTap : function(e){
+							$state.go('signup');
+						}
+
+					}
+				]
+			}
+		);
+	}
+	
+	$scope.pendaftaran = function(akun){
+		var baseUrl = "http://localhost/konversiMU/";
+		
+		$ionicLoading.show();
+		
+		$http.post(baseUrl + "pendaftaranAkun.php",{
+			nama		: akun.nama,
+			password	: akun.password,
+			id 		 	: akun.id,
+			type 	 	: akun.type
+		})
+		.then(function(result){
+			$scope.status = result.data;
+			console.log(result.data);
+			if(result.data=="2"){
+				$scope.showPopup("Primary Key","not Allowed");
+			}
+			else if(result.data=="1"){
+				$scope.showPopup("Sukses","proses insert sukses");
+			}
+			else{
+				$scope.showPopup("Error Mo","check konfigurasi anda")
+			}
+
+
+			$ionicLoading.hide();
+		})
+		
+		
+	}
+
+})
  
 .controller('prosesKonversiCtrl', function ($scope,$http,$ionicLoading,$stateParams){
 	var id = $stateParams.detail_id;
@@ -189,7 +255,9 @@ function ($scope, $stateParams) {
 		$scope.onClickKonversi = function(){
 		}
 			$scope.hasil = $scope.nominalRp * $scope.nominalnonRp;
-		})
+		});
+
+    
 
 
 

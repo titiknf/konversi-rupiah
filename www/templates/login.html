@@ -8,17 +8,17 @@
       <ion-list id="login-list4">
         <label class="item item-input" id="login-input21">
           <span class="input-label">Username</span>
-          <input type="text" ng-model="User.nama" placeholder="" required minlength="5" maxlength="20">
+          <input type="text" ng-model="User.nama" placeholder="" required minlength="4" maxlength="20" name="nama">
         </label>
         <label class="item item-input" id="login-input22">
           <span class="input-label">Password</span>
-          <input type="password" ng-model="User.password" placeholder="" required minlength="5" max="30">
+          <input type="password" ng-model="User.password" placeholder="" required minlength="4" max="30">
         </label>
       </ion-list>
       <div class="spacer" style="height: 40px;"></div>
-      <a ui-sref="kontrolTab.konversiKeRupiah" input type="submit" id="login-button17" class="button button-positive  button-block" ng-disabled="!frmlogin.$valid">Log in</a>
+      <input type="submit" value="Proses" class="button button-block button-positive" ng-disabled="!frmlogin.$valid">
       <div style="margin-right:-20px;">
-        <a ui-sref="signup" id="login-button18" style="left:-10px;" class="button button-stable  button-full button-clear">Or create an account</a>
+        <!-- <a ui-sref="signup" id="login-button18" style="left:-10px;" class="button button-stable  button-full button-clear">Or create an account</a> -->
       </div>
     </form>
   </ion-content>

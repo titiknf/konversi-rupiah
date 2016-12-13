@@ -3,10 +3,12 @@
     <form name="frmadd" novalidate ng-submit="frmadd.$valid && tambahData(userMatkul);">
     <div class="list">
       <label class="item item-input">
-        <input type="text" placeholder="ID" ng-model="userMatkul.id"  required minlength="2" maxlength="7" >
+        <input type="text" placeholder="ID" name="id" ng-model="userMatkul.id"  required minlength="2" maxlength="7" >
+          <a style="color: red" class="item" ng-show="frmadd.id.$error.required">!</a>
+          <a style="color: red" class="item" ng-show="frmadd.id.$error.minlength">min 2digit</a>
       </label>
       <label class="item item-input">
-        <input type="text" placeholder="Uang" ng-model="userMatkul.MataUang"  required minlength="2" maxlength="7" >
+        <input type="text" placeholder="Uang" ng-model="userMatkul.MataUang"  required minlength="2" maxlength="14" >
       </label>
       <label class="item item-input">
         <input type="text" placeholder="Nilai" ng-model="userMatkul.nilai" name="nilai" required minlength="2">

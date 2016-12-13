@@ -8,7 +8,11 @@ angular.module('app.routes', [])
   // Each state's controller can be found in controllers.js
   $stateProvider
     
-  
+  .state('login', {
+    url: '/login',
+    templateUrl: 'templates/login.html',
+    controller: 'loginCtrl'
+  })
 
     .state('kontrolTab.konversiKeRupiah', {
     url: '/Konversi',
@@ -56,12 +60,6 @@ angular.module('app.routes', [])
     }
   })
 
-  .state('login', {
-    url: '/login',
-    templateUrl: 'templates/login.html',
-    controller: 'loginCtrl'
-  })
-
   .state('signup', {
     url: '/signup',
     templateUrl: 'templates/signup.html',
@@ -77,9 +75,5 @@ angular.module('app.routes', [])
       }
     }
   })
-
-$urlRouterProvider.otherwise('/menuBawah/Konversi')
-
-  
-
+$urlRouterProvider.otherwise('/login');
 });

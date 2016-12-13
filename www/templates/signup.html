@@ -1,21 +1,21 @@
 <ion-view title="Signup" id="page11">
   <ion-content padding="true" class="has-header">
-    <form id="signup-form20" class="list">
-      <ion-list id="signup-list5">
-        <label class="item item-input" id="signup-input23">
-          <span class="input-label">Name</span>
-          <input type="text" placeholder="">
-        </label>
-        <label class="item item-input" id="signup-input24">
-          <span class="input-label">Username</span>
-          <input type="text" placeholder="">
-        </label>
-        <label class="item item-input" id="signup-input25">
-          <span class="input-label">Password</span>
-          <input type="password" placeholder="">
-        </label>
-      </ion-list>
-      <a ui-sref="login" id="signup-button19" style="color:kiki-;" class="button button-balanced  button-block">Sign up</a>
+    <form name="frmadd" novalidate ng-submit="frmadd.$valid && pendaftaran(akun);">
+      <form id="signup-form20" class="list">
+        <ion-list id="signup-list5">
+
+          <label class="item item-input" id="signup-input24">
+            <span class="input-label">Username</span>
+            <input type="text" placeholder="" ng-model="akun.nama">
+          </label>
+
+          <label class="item item-input" id="signup-input25">
+            <span class="input-label">Password</span>
+            <input type="password" placeholder="" ng-model="akun.password">
+          </label>
+        </ion-list>
+        <input type="submit" value="Sign up" style="color:kiki-;" class="button button-balanced  button-block" ng-disabled="!frmadd.$valid">
+      </form>
     </form>
   </ion-content>
 </ion-view>
