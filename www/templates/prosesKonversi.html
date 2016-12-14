@@ -8,11 +8,11 @@
         <input type="text"  name="nominal" ng-model="nominalRp" placeholder="input Nominal">
       </label>
     </form>
-    <button id="prosesKonversi-button12" ng-click="onClickKonversi()" class="button button-positive  button-block icon ion-arrow-graph-up-right"> Konversi</button>
+    <button id="prosesKonversi-button12" ng-click="onClickKonversi()" class="button button-positive  button-block icon ion-arrow-graph-up-right" disabled="disabled"> Konversi</button>
     <form id="prosesKonversi-form16" class="list">
       <label class="item item-input" id="prosesKonversi-input13">
-        <span class="input-label">Result :{{data.nilai}}.*{{nominalRp}}</span>
-        <input type="text" placeholder="" ng-model="hasil">
+        <span class="input-label">Result :    {{data.nilai*nominalRp}}</span>
+        <input type="text" placeholder="" >
       </label>
     </form>
   </ion-content>
